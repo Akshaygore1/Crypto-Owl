@@ -1,62 +1,73 @@
-import { AppBar, Container, createTheme, makeStyles, MenuItem, Select, ThemeProvider, Toolbar, Typography } from '@material-ui/core'
-import React from 'react'
-import { CryptoState } from '../context/CryptoContext';
+import {
+  AppBar,
+  Container,
+  createTheme,
+  makeStyles,
+  MenuItem,
+  Select,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
+import React from "react";
+import { Link } from "react-router-dom";
+import { CryptoState } from "../context/CryptoContext";
 
-const useStyles = makeStyles (() => ({
-  title:{
-    flex:1,
-    color:"Gold",
-    fontFamily:"Montserrat",
+const useStyles = makeStyles(() => ({
+  title: {
+    flex: 1,
+    color: "Gold",
+    fontFamily: "Montserrat",
     fontWeight: "bold",
-    cursor:"pointer",
-  }
-}))
+    cursor: "pointer",
+  },
+}));
 
 function Header() {
-
   const classes = useStyles();
 
-  const {currency, setCurrency} = CryptoState()
-  console.log(currency)
-
+  const { currency, setCurrency } = CryptoState();
+  console.log(currency);
 
   const darkTheme = createTheme({
-    palette:{
-      primary:{
-        main:'#fff',
+    palette: {
+      primary: {
+        main: "#fff",
       },
-      type:'dark',
-    }
-  })
+      type: "dark",
+    },
+  });
 
   return (
-      <ThemeProvider theme={darkTheme}>
-        <AppBar color='transparent' position='static'>
-          <Container>
-            <Toolbar>
-              <Typography 
+    <ThemeProvider theme={darkTheme}>
+      <AppBar color="transparent" position="static">
+        <Container>
+          <Toolbar>
+            <Typography
+              // onClick={() => }
               className={classes.title}
-              variant='h6'
-              >CryptOOwl</Typography>
-              <Select
-                variant='outlined'
-                style={{
-                  width: 100,
-                  height: 40,
-                  marginLeft: 15,
-                }}
-                value= {currency}
-                onChange={(e) => setCurrency(e.target.value)}
-              >
-                <MenuItem value={"USD"}>USD</MenuItem>
-                <MenuItem value={"INR"}>INR</MenuItem>
-              </Select>
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </ThemeProvider> 
-    
-  )
+              variant="h6"
+            >
+              CryptOOwl
+            </Typography>
+            <Select
+              variant="outlined"
+              style={{
+                width: 100,
+                height: 40,
+                marginLeft: 15,
+              }}
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <MenuItem value={"USD"}>USD</MenuItem>
+              <MenuItem value={"INR"}>INR</MenuItem>
+            </Select>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </ThemeProvider>
+  );
 }
 
-export default Header
+export default Header;
